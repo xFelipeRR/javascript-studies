@@ -30,6 +30,9 @@ console.log(carrosAgrupados)
     ford: [ { marca: 'ford', cor: 'branco' } ],
     peugeot: [ { marca: 'peugeot', cor: 'branco' } ]
   } */
+console.log("---------------------------------------------------------------")
+
+  
 
 
 
