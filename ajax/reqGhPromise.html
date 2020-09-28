@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <div id="app">
+        <h1>GitHub</h1>
+
+        <button>Recuperar dados do GitHub</button>
+        <br><br>
+    </div>
+
+    <script>
+        var ghPromise = function(){
+
+        return new Promise((resolve, reject) => {
+
+            var app = document.getElementById("app")
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "https://api.github.com/users/felipefontoura")
+            xhr.send(null)
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){ //4 = requisição bem sucedida
+                if(xhr.status === 200){
+                    resolve(JSON.parse(xhr.responseText)) // transforma uma string JSON em um
+                }                                         // objeto javascript
+                else{
+                    reject("Erro na função")
+                }
+            }
+         }
+        })
+    }
+
+                ghPromise()
+                .then((resposta) => { // resposta = o que está sendo passado no resolve
+                    console.log(resposta)
+                })
+                .catch((error) => {
+                    console.warn(error)
+                })
+           
+        
+
+            
+        </script>
+</body>
+</html>

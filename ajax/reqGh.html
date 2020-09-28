@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub</title>
+</head>
+<body>
+
+
+
+    <div id="app">
+        <h1>GitHub</h1>
+
+        <button onclick="recuperarDados()">Recuperar dados do GitHub</button>
+        <br><br>
+    </div>
+
+    <script>
+        function recuperarDados(){
+            var app = document.getElementById("app")
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.github.com/users/felipefontoura")
+            xhr.send(null)
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){ //4 = requisição bem sucedida
+                    var res = JSON.parse(xhr.responseText)
+                    
+                    var nome = res.name
+                    var avatar_url = res.avatar_url
+                    var followers = res.followers
+                    var blog_url = res.blog
+
+                    var elAvatar = document.createElement("img")
+                    elAvatar.setAttribute("width", 128)
+                    elAvatar.setAttribute("src", avatar_url)
+
+                    var elNome = document.createElement("p")
+                    elNome.innerText = nome
+
+                    var elFollowers = document.createElement("p")
+                    elFollowers.innerText = followers
+
+                    var elBlog = document.createElement("a")
+                    elBlog.setAttribute("href", "http://" + blog_url)
+                    elBlog.innerText = blog_url
+
+                        app.appendChild(elAvatar)
+                        app.appendChild(elNome)
+                        app.appendChild(elFollowers)
+                        app.appendChild(elBlog)
+                }
+            }
+        }
+    </script>
+</body>
+</html>
